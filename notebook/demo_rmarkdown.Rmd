@@ -1,0 +1,34 @@
+# Demo for Rmarkdown
+
+## Description
+We are using data from [Ben Aissa et al (2019) ](https://pubmed.ncbi.nlm.nih.gov/31668811-aahiv-a-sodium-channel-scorpion-toxin-inhibits-the-proliferation-of-du145-prostate-cancer-cells/?from_term=houcemeddine+othman&from_sort=date&from_pos=1) to test the significativity of 15ng/microliter of a peptide relative to controle on DU145 prostate cancer cell line adhesion. 
+
+## statistical significance
+$H_0$: there is no difference of cell migration between the controle samples and  the sample treated with the peptide. 
+
+$H_A$: There is a difference. 
+
+$\alpha=0.05$
+
+```{r }
+library(tidyverse)
+setwd("../data/")
+adhesion <- read.csv("adhesion_aah4.csv")
+Cn<-filter( adhesion, Sample=="Controle" )
+adhesion$inhibition <- (adhesion$OD/mean(Cn$OD))*100
+
+
+aah4 <- filter(adhesion, adhesion$Sample == "AaHIV")
+controle <- filter(adhesion, adhesion$Sample != "AaHIV")
+t.test(aah4$inhibition, controle$inhibition, alternative="t")
+
+```
+
+## Plotting the activity 
+
+```{r adhesion }
+library(ggpubr)
+ggbarplot(adhesion, x = "Sample", y = "inhibition", add = c("mean_se")
+          ,color = "Sample", fill = "Sample",alpha=0.3, palette = "Dark2", width = 0.4, ylab="inhibition %", xlab=FALSE )+ theme(legend.position="none", text = element_text(size=15))
+          
+```
