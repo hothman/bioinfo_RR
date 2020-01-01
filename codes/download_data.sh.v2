@@ -1,0 +1,13 @@
+#!/bin/bash 
+# Version 2, Jan 2020
+URL_BED=https://raw.githubusercontent.com/hothman/bioinfo_RR/master/data/glist.bed
+URL_chr=ftp://ftp.ensembl.org/pub/release-98/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.X.fa.gz
+
+# Download BED file for all human genes 
+wget -O ../data_HX/glist.bed $URL_BED
+
+# Download chromosome X in FASTA compressed format
+wget -O ../data_HX/Homo_sapiens.GRCh38.dna.chromosome.X.fa.gz $URL_chr 
+
+# generate bed file only for X chromosome 
+grep "^X\s" data_HX/glist.bed > data_HX/genes_x.bed

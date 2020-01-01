@@ -1,0 +1,9 @@
+#!/bin/bash 
+
+# Download BED file for all human genes 
+wget -O ../data_HX/glist.bed  https://raw.githubusercontent.com/hothman/bioinfo_RR/master/data/glist.bed
+
+# Download chromosome X in FASTA compressed format
+wget -O ../data_HX/Homo_sapiens.GRCh38.dna.chromosome.X.fa.gz  ftp://ftp.ensembl.org/pub/release-98/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.chromosome.X.fa.gz
+
+

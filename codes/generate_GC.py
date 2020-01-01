@@ -60,7 +60,7 @@ def plot_histogram(list_of_GCs, nbins = 50, path2output="./" ):
 	plt.savefig(path2output+"GC.svg")
 
 if __name__ == "__main__":
-	myGC = compute("Homo_sapiens.GRCh38.dna.chromosome.X.fa.gz", "wd/data_HX/genes_x.bed")
+	myGC = compute("Homo_sapiens.GRCh38.dna.chromosome.X.fa.gz", "data_HX/genes_x.bed")
 	myGC.prepare_seq()
 	print("Calculating GC content...")
 	GCs = myGC.computeGC()
